@@ -20,9 +20,8 @@ public class MessageBean implements Serializable {
     private String lang;    
     private String name;
     private String pronoum;
+    private String formtype;
     
-    private String msg;
-
     private Dictionary dictionary;
     
     public MessageBean() {
@@ -36,6 +35,7 @@ public class MessageBean implements Serializable {
             .addTerm("good_night", "Boa noite")
             .addTerm("mr.", "Senhor")
             .addTerm("mrs.", "Senhora")
+            .addTerm("good_bye", "Adeus")
         ;
 
         dictionary.addLanguage("en")
@@ -46,6 +46,7 @@ public class MessageBean implements Serializable {
             .addTerm("good_night", "Good night")
             .addTerm("mr.", "Mr.")
             .addTerm("mrs.", "Mrs.")
+            .addTerm("good_bye", "Good bye")
         ;
 
         dictionary.addLanguage("de")
@@ -56,6 +57,7 @@ public class MessageBean implements Serializable {
             .addTerm("good_night", "Gute nacht")
             .addTerm("mr.", "Herr.")
             .addTerm("mrs.", "Herrin.")
+            .addTerm("good_bye", "Auf Wiedersehen")
         ;
 
         dictionary.addLanguage("fr")
@@ -66,6 +68,7 @@ public class MessageBean implements Serializable {
             .addTerm("good_night", "Bonne nuit")
             .addTerm("mr.", "M.")
             .addTerm("mrs.", "Mme.")
+            .addTerm("good_bye", "Au revoir")
         ;
         
         dictionary.addLanguage("ru")
@@ -76,6 +79,7 @@ public class MessageBean implements Serializable {
             .addTerm("good_night", "Спокойной ночи")
             .addTerm("mr.", "Мистер.")
             .addTerm("mrs.", "Г-жа.")
+            .addTerm("good_bye", "До свидания")
         ;
 
         dictionary.addLanguage("ua")
@@ -86,17 +90,23 @@ public class MessageBean implements Serializable {
             .addTerm("good_night", "Надобраніч")
             .addTerm("mr.", "Містер.")
             .addTerm("mrs.", "Пані.")
+            .addTerm("good_bye", "До побачення")
         ;
     }
     
     public void setLang(String lang) { this.lang = lang; }
     public void setName(String name) { this.name = name; }
     public void setPronoum(String pronoum) { this.pronoum = pronoum; }
+    public void setFormtype(String formtype) { this.formtype = formtype; }
     
     
     public String getMsg() {
         LanguageTerms terms = dictionary.getLanguage(this.lang); 
-        return this.getTimeGreeting(this.lang) + ", " + (this.pronoum.equals("none") ? "" : terms.getTerm(this.pronoum) + " ") + this.name;
+        if(this.formtype.equals("hello")) {
+            return this.getTimeGreeting(this.lang) + ", " + (this.pronoum.equals("none") ? "" : terms.getTerm(this.pronoum) + " ") + this.name;
+        } else {
+            return terms.getTerm("good_bye") + ", " + (this.pronoum.equals("none") ? "" : terms.getTerm(this.pronoum) + " ") + this.name;
+        }
     }    
     
     public String getTimeGreeting(String lang) {
