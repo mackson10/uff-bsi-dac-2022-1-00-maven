@@ -16,7 +16,12 @@
         <jsp:useBean id="myBean" class="hello.MessageBean"/>
         <h1>SayHello.jsp</h1>
         <% String lang = request.getParameter("lang"); %>
-        <jsp:setProperty name="myBean" property="msg" value="<%=lang%>"/>
-        <jsp:getProperty name="myBean" property="msg"/>, <%=request.getParameter("nome")%>!
+        <jsp:setProperty name="myBean" property="lang" value="<%=lang%>"/>
+        <% String pronoum = request.getParameter("pronoum"); %>
+        <jsp:setProperty name="myBean" property="pronoum" value="<%=pronoum%>"/>
+        <% String name = request.getParameter("name"); %>
+        <jsp:setProperty name="myBean" property="name" value="<%=name%>"/>
+        
+        <jsp:getProperty name="myBean" property="msg"/>
     </body>
 </html>
