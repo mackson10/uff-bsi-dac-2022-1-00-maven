@@ -12,7 +12,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title><%=formtype.equals("hello") ? "Say Hello!" : "Say Good Bye!"%> (sayhello.jsp)</title>
-        <link rel="stylesheet" href="global.css">
  
     </head>
     <body>
