@@ -96,7 +96,7 @@ public class MessageBean implements Serializable {
     
     public String getMsg() {
         LanguageTerms terms = dictionary.getLanguage(this.lang); 
-        return this.getTimeGreeting(this.lang) + ", " + terms.getTerm(this.pronoum) + " " + this.name;
+        return this.getTimeGreeting(this.lang) + ", " + (this.pronoum.equals("none") ? "" : terms.getTerm(this.pronoum) + " ") + this.name;
     }    
     
     public String getTimeGreeting(String lang) {
